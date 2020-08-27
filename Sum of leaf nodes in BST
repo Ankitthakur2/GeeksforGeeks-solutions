@@ -150,3 +150,23 @@ int sumOfLeafNodes(Node *r ){
       else 
    return  (sumOfLeafNodes(r->left)+sumOfLeafNodes(r->right));
     }
+    
+    // or
+    /*
+    int sumOfLeafNodes(Node *r ){
+     int sum=0;
+     if(r==NULL)
+     return 0;
+   else if(r->left==NULL && r->right==NULL)
+     {
+         //return r->data;
+         sum=sum+r->data;
+     }
+      else {
+     sum=sum+sumOfLeafNodes(r->left);
+     sum=sum+sumOfLeafNodes(r->right);
+      }
+     return sum;
+}
+*/
+    
