@@ -23,8 +23,7 @@ Your Task:
 You don't need to read input or print anything. Your task is to complete the function kthLargest() which takes the root of the BST and an integer K as inputs and returns the Kth largest element in the given BST.
 
 
-Expected Time Complexity: O(H + K).
-Expected Auxiliary Space: O(H) , where H is the height of the tree.
+
 
 // { Driver Code Starts
 #include <bits/stdc++.h>
