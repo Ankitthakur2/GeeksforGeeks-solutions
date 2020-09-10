@@ -1,0 +1,124 @@
+You are given a Binary tree. You are required to find the number of pairs violating the BST property. In BST every element in left subtree must be less than every element in the right subtree. You are required to complete the function pairsViolatingBST(Node *root, int N).
+
+ 
+
+Input:
+
+The first line consists of an integer T denoting the number of test cases. Each test case consists of two lines. The first line of each test case consists of a single integer N, denoting the number of edges in the Binary tree. The next line contains the edges of the binary tree. Each edge consists of two integers and one character first of whose is parent node, second is child node and character "L" representing Left child and "R" representing the right child. 
+ 
+
+Output:
+
+You are required to complete the function pairsViolatingBST(Node *root, int N) which takes the root of the tree and the number of edges N as the arguments. The function returns the required number of pairs. As the results can be large, return your result modulo 10^9 + 7 
+
+Constraints:
+
+1 <= T <= 1000                
+
+1 <= N < 10^5     
+
+
+// { Driver Code Starts
+
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define MOD 1000000007
+
+int indx,ans;
+
+struct Node{
+    int data;
+    Node *left,*right;
+    
+    Node(int d){
+        data=d;
+        left=right=NULL;
+    }
+};
+int pairsViolatingBST(Node *root,int n);
+void insert(Node *root,int a,int b,char ch);
+
+int main() {
+    int t,n;
+    cin>>t;
+    while(t--){
+        cin>>n;
+		indx=0;
+		ans=0;
+        Node *root=NULL;
+        for(int j=0;j<n;j++){
+            int a,b;
+            char ch;
+            cin>>a>>b>>ch;
+            if(root==NULL){
+                root=new Node(a);
+                switch(ch){
+                    case 'L':root->left=new Node(b);
+                            break;
+                    case 'R':root->right=new Node(b);
+                            break;
+                }
+            }else{
+                insert(root,a,b,ch);
+            }
+        }
+		cout<<pairsViolatingBST(root,n)<<"\n";
+    }
+
+	return 0;
+}
+
+void insert(Node *root,int a,int b,char ch){
+    if(root==NULL)return;
+    if(root->data==a){
+        switch(ch){
+            case 'L':root->left=new Node(b);
+                    break;
+            case 'R':root->right=new Node(b);
+                    break;
+        }
+    }else{
+        insert(root->left,a,b,ch);
+        insert(root->right,a,b,ch);
+    }
+}
+// } Driver Code Ends
+
+
+/* The structure of Node
+struct Node{
+    int data;
+    Node *left,*right;
+    Node(int d){
+        data=d;
+        left=right=NULL;
+    }
+}; */
+
+void fun1(Node *root,vector<int> &v)
+{
+    if(root==NULL)
+    return;
+    fun1(root->left,v);
+    v.push_back(root->data);
+    fun1(root->right,v);
+    
+}
+/*You are required to complete below method */
+int pairsViolatingBST(Node *root,int n){
+          vector<int> v;
+          fun1(root,v);
+          int count=0;
+          for(int i=0;i<v.size();i++)
+          {
+              for(int j=i+1;j<v.size();j++)
+              {
+                  if(v[i]>v[j])
+                   count++;
+                  
+              }
+              
+          }
+          return count;
+}
