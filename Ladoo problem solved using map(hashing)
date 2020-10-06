@@ -1,0 +1,59 @@
+Bheem promised all his friends that if he won the tournament so he will give ladoos. But he knew that he can afford only one ladoo per day. If he is unable to give ladoo to any of his friend he will loose his friendship with them (if more than one his friend demanded for ladoo on same day). As he has won the tournament now he has to give ladoos to his friends. Now your task is to tell how many friends he will be able to save.
+
+Input:
+First line consists of T test case.
+First line of every test case 'N', represents how many friends he has.
+Second line of every test case Ai, represents which friend asked for ladoo on which day.
+
+Output:
+For each test case, Single line output denoting how many friends he is able to save.
+
+Constraints:
+1<=T<=100
+1<=N<=1000
+1<=Ai<=1000
+
+Example:
+Input:
+1
+5
+3 3 1 2 4
+Output:
+4
+
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+ {
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    map<int,int> m;
+	    int n;
+	    cin>>n;
+	    int count=0;
+	    for(int i=0;i<n;i++)
+	    {
+	      int x;
+	        cin>>x;
+	      if(m[x]>=1)
+	      {
+	          m[x]=1;
+	      }
+	      else
+	      {
+	          m[x]=1;
+	      }
+	    }
+	   
+	   for(auto i=m.begin();i!=m.end();i++)
+	   {
+	       if(i->second==1)
+	       count++;
+	   }
+	  cout<<count<<endl; 
+	 
+	}
+	return 0;
+}
