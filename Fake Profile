@@ -1,0 +1,76 @@
+There is a hacker named "Vijay" who has developed a method to check whether an id at some social networking site is fake or real using its username.
+
+His method includes: if the number of distinct characters in one's user name is odd, then the user is a male, otherwise a female. You are given the string that denotes the user name, please help Vijay to determine the gender of this user by his method. Ignore the vowels.
+
+Input:
+The first line contains a integer T i.e. the number of test cases. Each test case contains string S that contains only lowercase English letters — the user name.
+
+Output:
+If it is a female by Vijay's method, print "SHE!" (without the quotes), otherwise, print "HE!" (without the quotes).
+
+Constraints:
+1<=T<=100
+1<=Length of string<=1000
+ 
+
+Time Complexity:O(n)
+
+Examples:
+Input :
+3
+jpmztf
+plkaitw
+gfuyg
+
+Output:
+SHE!
+HE!
+HE!
+
+Explanation:
+For the first test case. There are 6 distinct characters in "jpmztf". These characters are: "j", "p", "m", "z", "t", "f". So jpmztf is a female and you should print "SHE!".
+
+For the second example. There are 5 distinct characters in "plkaitw". These characters are: "p"," l ","k","t"and"w" as others are vowels. So plkaitw is a male and you should print "HE!".
+ 
+
+
+
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+ {
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	   string s;
+	   cin>>s;
+	   set<char> s1;
+	   int count=0;
+	   for(int i=0;i<s.length();i++)
+	   {
+	 if((s[i]=='a') || (s[i]=='e') || (s[i]=='i') || (s[i]=='o') || (s[i]=='u'))
+	{
+	 continue;
+	}      
+	  else
+	  {
+	      s1.insert(s[i]);
+	  }
+	       
+	   }
+	    
+	if(s1.size()%2==0)
+	{
+	    cout<<"SHE!"<<endl;
+	}
+	else 
+	{
+	    cout<<"HE!"<<endl;
+	}
+	    }
+	return 0;
+}
