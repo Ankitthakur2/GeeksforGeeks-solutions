@@ -1,0 +1,69 @@
+Given an array of size n, the goal is to find out the smallest number that is repeated exactly ‘k’ times.
+
+Input:
+First line consists of T test cases. First line of every test cases consists of 2 integers N and K. Second line of consists of every test case consists of array elements
+
+Output:
+Single line output, print the smallest number to be repeated k times, else print -1.
+
+Constraints:
+1<=T<=100
+1<=N<=10000
+1<=K<=10
+
+Example:
+Input:
+2
+5 2
+1 2 2 1 1
+5 2
+1 1 1 2 3
+Output:
+2
+-1
+
+
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+ {
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int n,k,flag=0;
+	    cin>>n>>k;
+	    map<int,int> m;
+	    for(int i=0;i<n;i++)
+	    {
+	        int x;
+	        cin>>x;
+	        if(m[x]>=1)
+	        {
+	            m[x]=m[x]+1;
+	        }
+	        else
+	        {
+	            m[x]=1;
+	        }
+	    }
+	  
+	  for(auto i=m.begin();i!=m.end();i++)
+	  {
+	      if(i->second==k)
+	      {
+	          cout<<i->first<<endl;
+	          flag=1;
+	          break;
+	      }
+	      
+	  }
+	  
+	    if(flag==0)
+	    {
+	        cout<<"-1"<<endl;
+	    }
+	    
+	}
+	return 0;
+}
