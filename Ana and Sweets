@@ -1,0 +1,79 @@
+Ana has a sweets shop. There is a great festival at her village next weekend. She needs to be prepared to make a good business that day.
+
+She has prepared N sweets which can be of at most 32 different types. On the festival day she finds K customer at her shop. She wants to sell all her sweets but the customer won’t take the same type of sweet more than 2 pieces.
+
+Input
+
+The first line contains an integer T, denoting the number of test cases. The first line of each test case contains an integer N denoting number of sweets. The second lines contains N space separated integer, the ith integer denoting the type of the ith sweet. The third line contains an integer K denoting number of customer.
+
+Output
+
+Print 1 if she can sell all her sweets else 0.
+
+Constraint
+
+1<=T<=10^4
+
+1<=N<=1000
+
+1<=K<=256
+
+Types of sweet will always be in the range [1,32]
+
+Example
+
+Input
+
+1
+
+5
+
+1 1 2 5 1
+
+2
+
+Output
+
+1
+
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+ {
+     int t;
+     cin>>t;
+     while(t--)
+     {
+         int n,k,flag=0;
+         cin>>n;
+         map<int,int> m;
+         
+         for(int i=0;i<n;i++)
+         {
+             int x;
+             cin>>x;
+            m[x]++;
+             
+         }
+         
+        cin>>k;
+        
+        for(auto i=m.begin();i!=m.end();i++)
+        {
+            if(i->second>(2*k))
+            {
+                flag=1;
+                break;
+            }
+            
+        }
+        
+        if(flag==1)
+        cout<<"0"<<endl;
+        else
+        cout<<"1"<<endl;
+         
+     }
+	
+	return 0;
+}
