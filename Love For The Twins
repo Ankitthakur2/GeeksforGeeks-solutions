@@ -1,0 +1,84 @@
+Given an Array of Integers Arr of length N, you have to count number of elements of the array that can be counted as pair of equal elements.
+
+ 
+
+Example 1:
+
+Input : 
+N = 7
+Arr[] = {10, 10, 10, 20, 20, 10, 20}
+Output:
+6
+Explanation:
+The pairs formed are: (10,10),
+(10,10), (20,20). The leftover 10
+can't be paired with any other 10.
+So, the Output is 6.
+Example 2:
+
+Input : 
+N = 4
+Arr = {10, 20, 30, 40}
+Output:
+0
+Explanation:
+No pairs can be formed.
+So, the Output is 0.
+ 
+
+Your Task:
+You don't need to read input or print anything. Your task is to complete the function getTwinCount() which takes an Integer N and an Array Arr as input and returns the answer.
+
+ 
+
+Expected Time Complexity: O(N)
+Expected Auxiliary Space: O(N)
+
+ 
+
+Constraints:
+1 <= N <= 105
+1 ≤ Arr[i] ≤ 105
+// { Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+ // } Driver Code Ends
+
+
+class Solution {
+  public:
+ 
+    int getTwinCount(int N , int Arr[]) {
+        int ar[100001] = {0};
+        for(int i=0;i<N;++i)
+           ar[Arr[i]]++;
+        int cnt = 0;
+        for(int i=1;i<=100000;++i)
+        {
+            if(ar[i] > 1)
+              cnt += ar[i] % 2 ? ar[i] - 1 : ar[i];
+        }
+        return cnt;
+        
+    }
+    
+};
+
+// { Driver Code Starts.
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        int N;
+        
+        cin>>N;
+        int Arr[N];
+        for(int i=0 ; i<N ; i++)
+            cin>>Arr[i];
+
+        Solution ob;
+        cout << ob.getTwinCount(N,Arr) << endl;
+    }
+    return 0;
+}  // } Driver Code Ends
