@@ -1,0 +1,97 @@
+Given a dictionary of words and a pattern. Every character in the pattern is uniquely mapped to a character in the dictionary. Find all such words in the dictionary that match the given pattern. 
+
+Example 1:
+
+Input:
+N = 4
+dict[] = {abb,abc,xyz,xyy}
+pattern  = foo
+Output: abb xyy
+Explanation: xyy and abb have the same
+character at index 1 and 2 like the
+pattern.
+Your Task:
+You don't need to read input or print anything. Your task is to complete the function findMatchedWords() which takes an array of strings dict[] consisting of the words in the dictionary and a string, Pattern and returns an array of strings consisting of all the words in the dict[] that match the given Pattern in lexicographical order.
+
+Expected Time Complexity: O(N*K) (where K is the length of the pattern).
+Expected Auxiliary Space: O(N).
+
+Constraints:
+1 <= N <= 10
+
+// { Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<string> findMatchedWords(vector<string> dict,string pattern);
+
+int main()
+{
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		int n;
+		cin>>n;
+		vector<string> s(n);
+		for(int i=0;i<n;i++)
+		    cin>>s[i];
+		
+		string tt;
+		cin>>tt;
+		
+		vector<string> res = findMatchedWords(s,tt);
+        sort(res.begin(),res.end());
+		for(int i=0;i<res.size();i++)
+		    cout<<res[i]<<" ";
+		cout<<endl;
+		
+	}
+}// } Driver Code Ends
+
+
+/* The function returns a  vector of strings 
+present in the dictionary which matches
+the string pattern.
+You are required to complete this method */
+vector<string> findMatchedWords(vector<string> dict,string pattern)
+{
+       map<char,int> m1;
+       vector<string> v;
+       
+       int i=0;
+       while(i<pattern.length())
+       {
+           m1[pattern[i]]++;
+           i++;
+       }
+for(int j=0;j<dict.size();j++)
+{
+  map<int,int>  m2;
+  int k=0;
+       string s2=dict[j];
+       while(k<s2.length())
+       {
+           m2[s2[k]]++;
+           k++;
+       }
+     int flag=0;
+       
+       auto p1=m1.begin();
+       auto p2=m2.begin();
+      for( ;p1!=m1.end(),p2!=m2.end();p1++,p2++)
+      {
+          if(p1->second!=p2->second)
+          {
+              flag=1;
+          }
+      }
+       if(flag==0 && (s2.length()==pattern.length()))
+       {
+           v.push_back(s2);
+       }
+    m2.clear();
+    s2.clear();
+}
+return v;
+}
