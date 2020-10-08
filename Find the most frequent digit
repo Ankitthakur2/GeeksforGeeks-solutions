@@ -1,0 +1,52 @@
+
+Given a number N, find the most occurring digit in it. If two or more digits occur same number of times, then return the highest of them. Input number is given as a string.
+
+Input:
+The first line of input contains an integer T denoting the number of test cases. Then T test cases follow. The first line of each test case contains the number N
+
+Output:
+Print the most occurring digit in the number. If two or more digits occur same number of times, then print the highest of them. Print the answer for each test case in a new line.
+
+Constraints:
+1<= T <=100
+1<= N <=101000
+
+Example:
+Input:
+1
+12234
+
+Output:
+2
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+ {
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    string s;
+	    cin>>s;
+	    int m[10]={0};
+	    for(long int i=0;i<s.length();i++)
+	    {
+	        int x=int(s[i])-48;
+	        m[x]++;
+	    }
+	  int maxi=*(max_element(m,m+10));  
+	   
+	   for(int i=9;i>=0;i--)
+	   {
+	       if(maxi==m[i])
+	       {
+	        cout<<i<<endl;
+	       break;
+	           
+	       }
+	   }
+	    
+	    
+	}
+	return 0;
+}
