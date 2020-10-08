@@ -1,0 +1,67 @@
+There are total N tasks given to a group of 5 students in a class.Three of those five students completed M tasks of their choices and left the group.Now the burden of completing remaining tasks is on the two students Tanya and Manya. Suppose the N tasks are in an array form 1,2,3,...N .Tanya and Manya decided to complete their remaining tasks in the following manner :- First of the remaining task is done by Tanya and the next remaining one by Manya .For example if N=10 and M=4 and the completed 4 tasks are{2,3,5,7},then the reamining tasks are{1,4,6,8,9,10}, so,Tanya completes{1,6,9} tasks and Manya completes{4,8,10}tasks and thereby completing the N tasks given.
+
+Given N,M and the indexes (1 for first task,2 for second task and so on..)of completed tasks,find the tasks which Tanya and Manya have to complete.
+
+Input:
+First line of the input contains an integer T denoting the number of test cases. Then T test cases follow. Each test case contains two lines.First Line contains the Integers N and M .Second line contains the list of M completed tasks.
+
+Output:
+
+The output for each test case consists of two lines. The first line is a list of the indices of the tasks which Tanya has to complete.The second line is a list of the indices of the tasks which Manya has to complete. Both lists must appear in increasing order of indices and consecutive integers should be separated by a single space. If either Tanya or Manya have no tasks to perform, then their corresponding line should be left blank.
+
+Constraints:
+1<=T<=100
+1<=M<=N<=100
+
+Example:
+Input:
+3
+15 6
+2 5 6 7 9 4
+4 3
+2 4 3
+5 2
+2  4 
+Output:
+1 8 11 13 15 
+3 10 12 14 
+1
+1 5
+3
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+ {
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int n,m;
+	    cin>>n>>m;
+	    map<int,int> m1;
+	    vector<int> v;
+	    for(int i=0;i<m;i++)
+	    {
+	        int x;
+	        cin>>x;
+	        m1[x]=1;
+	    }
+	for(int i=1;i<=n;i++)
+	{
+	    if(m1[i]!=1)
+	    v.push_back(i);
+	}
+	    
+	    for(int i=0;i<v.size();i=i+2)
+	    {
+	        cout<<v[i]<<" ";
+	    }
+	    cout<<endl;
+	    for(int i=1;i<v.size();i=i+2)
+	    {
+	    cout<<v[i]<<" ";
+	    }
+	        cout<<endl;
+	    }
+	return 0;
+}
