@@ -1,0 +1,82 @@
+Given an array of items, an i-th index element denotes the item id’s and given a number m, the task is to remove m elements such that there should be minimum distinct id’s left.Print the number of distinct id’s.
+
+Input:
+The first line of the input contains a single integer T, denoting the number of test cases. Then T test case follows, the three lines of the input, the first line contains N, denoting number of elements in an array,second line contains N elements/ids, and third line contains the number M.
+
+Output:
+For each test case, print the minimum number of distinct ids.
+
+Constraints:
+1<=T<=100
+1<=N<=100
+1<=arr[i]<=10^6
+1<=M<=100
+
+Example:
+Input:
+2
+6
+2 2 1 3 3 3
+3
+8
+2 4 1 5 3 5 1 3
+2
+Output:
+1
+3
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+ {
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int n,count=0;
+	    cin>>n;
+	    int arr[n];
+	    unordered_map<int,int> m1;
+	    vector<int> v;
+	    for(int i=0;i<n;i++)
+	    {
+	        cin>>arr[i];
+	        m1[arr[i]]++;
+	    }
+	  int m;
+	  cin>>m;
+	for(auto i=m1.begin();i!=m1.end();i++)
+	{
+	    v.push_back(i->second);
+	    
+	}
+	
+	sort(v.begin(),v.end());
+	    
+	    for(int i=0;i<v.size();i++)
+	    {
+	        if(m==0)
+	        {
+	            break;
+	        }
+	        
+	       while(v[i] && m>0)
+	       {
+	           v[i]--;
+	           m--;
+	       }
+	        
+	    }
+	
+	for(int i=0;i<v.size();i++)
+	{
+	    if(v[i]!=0)
+	    {
+	        count++;
+	    }
+	}
+	
+	cout<<count<<endl;
+	    
+	}
+	return 0;
+}
