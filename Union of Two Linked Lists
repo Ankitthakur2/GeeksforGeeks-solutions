@@ -1,0 +1,143 @@
+Given two linked lists, your task is to complete the function makeUnion(), that returns the union of two linked lists. This union should include all the distinct elements only.
+
+Example 1:
+
+Input:
+L1 = 9->6->4->2->3->8
+L2 = 1->2->8->6->2
+Output: 1 2 3 4 6 8 9
+Your Task:
+The task is to complete the function makeUnion() which makes the union of the given two lists and returns the head of the new list.
+
+Note: The new list formed should be in non-decreasing order.
+
+Expected Time Complexity: O(N * Log(N))
+Expected Auxiliary Space: O(N)
+
+Constraints:
+1<size of the linked lists<=5000
+// { Driver Code Starts
+#include<bits/stdc++.h>
+using namespace std;
+
+struct Node
+{
+	int data;
+	struct Node* next;
+	
+	Node(int x){
+	    data = x;
+	    next = NULL;
+	}
+	
+};
+
+struct Node* buildList(int size)
+{
+    int val;
+    cin>> val;
+    
+    Node* head = new Node(val);
+    Node* tail = head;
+    
+    for(int i=0; i<size-1; i++)
+    {
+        cin>> val;
+        tail->next = new Node(val);
+        tail = tail->next;
+    }
+    
+    return head;
+}
+
+void printList(Node* n)
+{
+    while(n)
+    {
+        cout<< n->data << " ";
+        n = n->next;
+    }
+    cout<< endl;
+}
+
+struct Node* makeUnion(struct Node* head1, struct Node* head2);
+
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int n, m;
+        
+        cin>>n;
+        Node* first = buildList(n);
+        
+        cin>>m;
+        Node* second = buildList(m);
+        
+        printList(makeUnion(first,second));
+    }
+    return 0;
+}
+// } Driver Code Ends
+
+
+/*
+// structure of the node is as follows
+
+struct node
+{
+	int data;
+	struct node* next;
+	
+	node(int x){
+	    data = x;
+	    next = NULL;
+	}
+	
+};
+
+*/
+
+struct Node* makeUnion(struct Node* head1, struct Node* head2)
+{
+   struct Node *s1=head1;
+   struct Node *s2=head2;
+   set<int> s;
+   
+  while(s1!=NULL)
+  {
+      s.insert(s1->data);
+      s1=s1->next;
+  }
+  
+  while(s2!=NULL)
+  {
+      s.insert(s2->data);
+      s2=s2->next;
+  }
+  head1=NULL;
+  head2=NULL;
+  for(auto i=s.begin();i!=s.end();i++)
+  {
+     struct Node *temp= new Node(*i);
+      temp->data=(*i);
+      temp->next=NULL;
+      if(head1==NULL)
+      {
+          head1=temp;
+      }
+      else
+      {
+          head2=head1;
+          while(head2->next!=NULL)
+          {
+              head2=head2->next;
+          }
+          head2->next=temp;
+      }
+  }
+  
+  return head1;
+}
