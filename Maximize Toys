@@ -1,0 +1,71 @@
+Given an array arr of length N consisting cost of toys. Given an integer K depicting the amount with you. The task is to Maximise the number of different toys you can have with K amount. 
+
+Example 1:
+
+Input: N = 7, K = 50
+arr = {1, 12, 5, 111, 200, 1000, 10}
+Output: 4
+Explaination: The costs of the toys are 
+1, 12, 5, 10.
+Example 2:
+
+Input: N = 3, K = 100
+arr = {20, 30, 50}
+Output: 3
+Explaination: We can buy all types of 
+toys.
+Your Task:
+You do not need to read input or print anything. Your task is to complete the function toyCount() which takes the value N, K and the array arr and returns the maximum count of toys.
+
+Expected Time Complexity: O(NlogN)
+Expected Auxiliary Space: O(1)
+
+Constraints:
+1 ≤ N ≤ 1000
+1 ≤ K, arr[i] ≤ 10000
+// { Driver Code Starts
+//Initial Template for C++
+
+#include <bits/stdc++.h>
+using namespace std;
+
+ // } Driver Code Ends
+
+
+//User function Template for C++
+
+class Solution{
+public:
+    int toyCount(int N, int K, int arr[])
+    {
+        int count=0;
+            sort(arr,arr+N);
+            for(int i=0;i<N;i++)
+            {
+                if(K-arr[i]>=0)
+                {
+                    K=K-arr[i];
+                    count++;
+                }
+            }
+            return count;
+    }
+};
+
+// { Driver Code Starts.
+
+int main(){
+    int t;
+    cin>>t;
+    while(t--){
+        int N, K;
+        cin>>N>>K;
+        int arr[N];
+        for(int i = 0;i < N;i++)
+            cin>>arr[i];
+        
+        Solution ob;
+        cout<<ob.toyCount(N, K, arr)<<endl;
+    }
+    return 0;
+}  // } Driver Code Ends
