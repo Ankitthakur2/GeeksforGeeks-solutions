@@ -1,0 +1,105 @@
+The world’s most successful thief ever, Albert Spaggiari was planning for his biggest theft ever on the world bank. He decides to carry a sack, which can carry a maximum of C kgs. The day finally arrives, also arrives Albert at the gates of the bank. Luckily, there wasn’t any guard on the gate. He enters the locker and was amazed to see large blocks of gold. This also made him worry a bit, as it was difficult to carry such blocks and this can reduce the amount of gold he can carry. All the blocks have some profit value associated with them.(i.e. that much profit will be earned by using that block fully). So, he calls his friend and asks him to bring a gas cutter. His friend came after sometime, and they both start to collect and cut the blocks according to their needs. The story isn’t over yet, Albert hates symmetry, so he can’t use blocks whose weight is a perfect square.
+
+Now, you need to find out the maximum profit that he can earn.
+
+
+Input:
+The first line of input contains T denoting number of test cases. The first line of each test case contains two integers N and C, denoting the number of blocks and the capacity of Albert’s sack. Next line contains N space separated pairs contain 2 integers each, Wi and Pi, denoting the weight and profit of the ith block.
+
+Output:
+For each test case output a single line containing the maximum profit that he can earn(with a precision of 10-3).
+
+Constraints:
+1<= T <= 100
+1<= N <= 103
+1<=C<=1018
+1<=Wi<=109
+1<=Pi<=109
+
+ 
+
+Example:
+Input:
+2
+3 10
+4 8 5 5 7 4
+2 3
+1 2 3 4
+
+Output:
+7.857
+4.000
+
+ 
+
+Explanation:
+In first test case as first block’s weight 4, is a perfect square, he can’t use this block. Now with the remaining blocks the most optimal way is to use 2nd block completely and cut 5kg piece from the 3rd block to get a total profit of 5+2.857=7.857.
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+ {
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	  int n;
+	  long long int c;
+	  cin>>n>>c;
+	  priority_queue<pair<float,pair<float,float>>> pq;
+	  double sum=0.0;
+	  for(int i=0;i<n;i++)
+	  {
+	      
+	      long int x,y;
+	      cin>>x>>y;
+	      if(int(pow(x,1/2.0))!=pow(x,1/2.0) && x!=1)
+	      pq.push({y/x,{x,y}});
+	      x=0,y=0;
+	      
+	  }
+	
+	    
+	    while((c>0)&&(pq.size()>0) )
+	    {
+	        if(c>=pq.top().second.first)
+	        {
+	            c=c-pq.top().second.first;
+	            sum=sum+pq.top().second.second;
+	            pq.pop();
+	        }
+	        else if(pq.top().second.first>c)
+	        {
+	            sum=sum+c/pq.top().second.first*pq.top().second.second;
+	            c=c-pq.top().second.first;
+	            pq.pop();
+	        }
+	        
+	        
+	    }
+	    
+	    printf("%.3f",sum);
+	    cout<<endl;
+	}
+	return 0;
+}
+
+
+/*
+
+Wrong Answer. !!!Wrong Answer
+
+Possibly your code doesn't work correctly for multiple test-cases (TCs).
+
+The first test case where your code failed:
+
+Input:
+934 90004799
+1009384 26127 1013408 16960 1005986 18812 1023183 11763 1006401 14368 1000742 590 1018063 3418 1004036 4794 1004443 14270 1019721 1558 1003447 19861 1018072 21301 421850521 29018 143904016 3419 1024256 1598 476330625 195 1011366 13477 1011446 7964 1010574 16038 631919044 15367 1024801 9358 1000812 6555 1010311 6494 1013345 17633 1023793 18249 1030481 16985 1013072 25655 1000515 2675 26491609 5701 1009597 22038 1003405 10306 1017164 15133 1020005 3636 1021442 6357 197458704 14801 1032435 21632 1030483 16134 1016247 26069 1015354 18547 53875600 13182 1028457 23533 1028273 16280 1001267 28411 183521209 9270 541865284 19289 1032451 24543 96924025 17272 599564196 29196 1029478 14076 1030405 18347 1012645 26429 1857769 30622 1021719 7110 1005385 20284 1000743 5849 1011941 11983 1020804 23018 1008294 13845 1005217 14879 1021650 16575 1015860 17622 1014320 13045 1019319 29727 152942689 5584 1017578 13117 1008957 990 359443681 13098 1002897 26018 173317225 3856 1008481 32273 254402.................
+
+Its Correct output is:
+2733376.000
+
+And Your Code's output is:
+1561410.249
+*/
+
