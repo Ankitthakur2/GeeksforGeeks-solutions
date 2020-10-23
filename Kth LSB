@@ -1,0 +1,58 @@
+A number N is given. Find its ‘K’th Least Significant Bit.
+
+Example 1:
+
+Input: N = 10, K = 4
+Output: 1
+Explanation: Binary Representation 
+of 10 is 1010. 4th LSB is 1.
+â€‹Example 2:
+
+Input: N = 16, K = 3 
+Output: 1 
+Explanation: Binary Representation of 
+16 is 10000. 3rd LSB is 0.
+Your Task:  
+You don't need to read input or print anything. Your task is to complete the function KthLSB() which takes the N and K as inputs and returns the bit (1 or 0) in K'th LSB.
+Expected Time Complexity: O(K)
+Expected Auxiliary Space: O(1)
+
+Constraints:
+1 ≤ N ≤ 109
+1 ≤ K ≤ 32
+// { Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+ // } Driver Code Ends
+
+
+//User function template for C++
+class Solution{
+public:	
+	
+	int KthLSB(long long int n, int k){
+	    k=k-1;
+	    n=n>>k;
+	    return n&1;
+	    
+	}
+};
+
+// { Driver Code Starts.
+
+int main(){
+    int t;
+    cin >> t;
+    while(t--){
+        long long n;
+        int k;
+        cin >> n >> k;
+        Solution ob;
+        
+        cout << ob.KthLSB(n, k) << endl;
+    }
+return 0;
+}
+
+  // } Driver Code Ends
