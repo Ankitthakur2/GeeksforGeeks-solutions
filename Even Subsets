@@ -1,0 +1,96 @@
+As we mentioned earlier, bitwise operations can be used to find number of subsets. Here, we will use that.
+
+Given an array A of N elements. The task is to count all the subsets whose sum is even.
+
+Input Format:
+For each testcase, first line of input contains number of testcases T. For each testcase, there will be two lines, first of which containing N and next line contains N space seperated positive integers.
+
+Output Format:
+For each testcase, print the count of subsets whose sum of all elements is even.
+
+Constraints:
+1 <= T <= 100
+1 <= N <= 10
+1 <= A[i] <= 10
+
+User Task:
+Your task is to complete the function countSumSubsets() which counts all the subsets in which sum of all the elements is even.
+
+Example:
+Input:
+1
+3
+1 2 3
+
+Output:
+3
+
+Explanation:
+Testcase 1: Three subsets are there whose sum of elements is even. Subsets are (3, 2, 1), (1, 3), (2).
+// { Driver Code Starts
+//Initial Template for C++
+
+#include<bits/stdc++.h>
+using namespace std;
+
+// Function prototype
+int countSumSubsets(int[], int);
+
+
+ // } Driver Code Ends
+
+
+//User function Template for C++
+
+/*Function to count subset with even sum
+* arr : array input
+* N : size of array
+*/
+int countSumSubsets(int arr[], int N){
+    int count=0;
+    long long int sum=0;
+    for(int i=1;i<(1<<N);i++)
+    {
+      for(int j=0;j<N;j++)
+        {
+            if(i&(1<<j))
+            {
+                sum=sum+arr[j];
+            }
+            
+        }
+        if((sum&1)!=1)
+        {
+            count++;
+        }
+        sum=0;
+    }
+    
+    return count;
+}
+
+// { Driver Code Starts.
+
+// Driver code to test columnWithMaxZeros function
+int main() {
+	
+	int testcase;
+	
+	cin >> testcase;
+	
+	while(testcase--){
+	    int N;
+	    cin >> N;
+	    
+	    int arr[N];
+	    
+	    // Taking elements input into the matrix
+	    for(int i = 0;i<N;i++){
+	            cin >> arr[i];
+	        }
+	    
+	    cout << countSumSubsets(arr, N) << endl;
+	}
+	
+	return 0;
+}  // } Driver Code Ends
