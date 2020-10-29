@@ -1,0 +1,66 @@
+Nobita has his exam on the way. Nobita is trying really hard to clear the examinations this time. So, he is practicing quite often. One day while practicing he faces a problem. The problem is as follows: Given a string S of lowercase characters, find out whether the summation of 'X' and 'Y' is even or odd, where X is the count of characters which occupy even positions in english alphabets and have even frequency, and Y is the count of characters which occupy odd positions in english alphabets and have odd frequency. Help Nobita to solve this problem.
+
+Input:
+The first line of input contains an integer T denoting the number of test cases. Then T test cases follow. The first and only line of each testcase contains S.
+
+Output:
+For each test case, in a new line, print "EVEN" if X+Y is even, else print "ODD" without quotes.
+
+Constraints:
+1 <= T <= 100
+1 <= |S| <= 1000
+
+Example:
+Input:
+2
+abbbcc
+nobitaa
+Output:
+ODD
+EVEN
+
+Explanation:
+Testcase1: X=0 and Y=1 so (X+ Y) = ODD.
+'a' occupies 1st place(odd) in english alphabets and its frequency is odd(1), 'b' occupies 2nd position(even) but its frequency is odd(3) so it doesn't get counted , 'c' occupies 3rd position but its frequency is 2(even) so it also does't get counted.
+
+Testcase2: X=0 and Y=2 so (X+ Y)= EVEN.
+'n' occupies 14th position(even) in english alphabets but its frequency is odd(1) so it doesn't get counted. 'o' occupies 15th position and its frequency is odd(1). 'b' occurs at 2nd position(even) but its frequency is odd(1), 'i' occurs at 9th position(odd) and its frequency is also odd(1) and so on.
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+ {
+int t;
+cin>>t;
+while(t--)
+{
+    string s;
+    cin>>s;
+    int x=0,y=0;
+    unordered_map<char,int> m;
+    for(int i=0;i<s.length();i++)
+    {
+        m[s[i]]++;
+    }
+    
+    for(auto i=m.begin();i!=m.end();i++)
+    {
+        
+        if(!((i->first)&1) && !((i->second)&1))
+        {
+            x++;
+        }
+         if(((i->first)&1) && ((i->second)&1))
+        {
+            y++;
+        }
+        
+    }
+    
+    if((x+y)&1)
+    cout<<"ODD"<<endl;
+    else
+    cout<<"EVEN"<<endl;
+    
+}
+	return 0;
+}
