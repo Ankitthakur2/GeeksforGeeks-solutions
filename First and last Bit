@@ -1,0 +1,61 @@
+Given a positive integer n. The problem is to check whether only the first and last bits are set in the binary representation of n. The answer is 1 if the first and last bit is set else 0.
+
+Example 1:
+
+Input: N = 9
+Output: 1
+Explanation: (9)10 = (1001)2, only 
+the first and last bits are set.
+â€‹Example 2:
+
+Input: N = 15
+Output: 0
+Explanation: (15)10 = (1111)2, except 
+first and last there are other bits also
+which are set.
+Your Task:  
+Your task is to complete the function onlyFirstAndLastAreSet() which takes the N as inputs and returns the answer.
+
+
+Expected Time Complexity: O(log N)
+Expected Auxiliary Space: O(1)
+
+Constraints:
+1 ≤ N ≤ 109
+// { Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+ // } Driver Code Ends
+
+
+//User function template for C++
+class Solution{
+public:	
+	
+	int onlyFirstAndLastAreSet(long long int n) { 
+	    
+	    long long int x=log2(n);
+	    if(((1<<x)+1)==n)
+	    return 1;
+	    else
+	    return 0;
+	}
+};
+
+// { Driver Code Starts.
+
+int main(){
+    int t;
+    cin >> t;
+    while(t--){
+        long long n;
+        cin >> n;
+        Solution ob;
+        cout << ob.onlyFirstAndLastAreSet(n) << endl;
+    }
+    
+return 0;
+}
+
+  // } Driver Code Ends
