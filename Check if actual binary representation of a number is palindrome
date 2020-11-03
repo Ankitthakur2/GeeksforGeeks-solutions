@@ -1,0 +1,84 @@
+Check if actual binary representation of a number is palindrome 
+Easy Accuracy: 55.72% Submissions: 287 Points: 2
+Given a non-negative integer N. Check whether the Binary Representation of the number is Palindrome or not. 
+Note: No leading 0’s are being considered.
+
+Example 1:
+
+Input:
+N = 5
+Output: 1
+Explanation: The Binary Representation of
+5 is 101 which is a Palindrome.
+
+â€‹Example 2:
+
+Input: 
+N = 10
+Output: 0
+Explanation: The Binary Representation of
+10 is 1010 which is not a Palindrome.
+
+Your Task:
+You don't need to read input or print anything. Your task is to complete the function binaryPalin() which takes an integer N as input and returns 1 if the binary representation of N is a palindrome. Else, return 0 .
+
+
+Expected Time Complexity: Log(N). 
+Expected Auxiliary Space: O(1).
+
+
+Constraints:
+0<=N<=263-1// { Driver Code Starts
+
+#include<bits/stdc++.h>
+using namespace std;
+
+
+ // } Driver Code Ends
+
+
+//User function template for C++
+class Solution{
+public:
+	
+	int binaryPalin (long long int N)
+	{
+	    string s;
+	    long long int n=N;
+	    while(n)
+	    {
+	        char x= (n&1);
+	        s.push_back(x);
+	    n=n>>1;
+	        
+	    }
+	    int i=s.length()/2;
+	    int j=0;
+	    int k=s.length()-1;
+	    while(j<i)
+	    {
+	        if(s[j]!=s[k-j])
+	        {
+	            return 0;
+	        }
+	        j++;
+	    }
+	  return 1;  
+	}
+};
+
+// { Driver Code Starts.
+
+int main()
+{
+	int t; cin >> t;
+	while (t--)
+	{
+		long long int n; cin >> n;
+		Solution ob;
+		cout << ob.binaryPalin (n) << endl;
+	}
+}
+
+// Contributed By: Pranay Bansal
+  // } Driver Code Ends
