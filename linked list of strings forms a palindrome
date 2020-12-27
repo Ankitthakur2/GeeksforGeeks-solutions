@@ -1,0 +1,129 @@
+Given a linked list of strings having n nodes check to see whether the combined string formed is palindrome or not. 
+
+Input:
+You have to complete the method which takes one argument: the head of the linked list . You should not read any input from stdin/console.. There are multiple test cases. For each test case, this method will be called individually.
+
+Output:
+Your function should return True if the combined string is pallindrome else it should return False.
+
+User Task:
+The task is to complete the function compute() which returns true or false.
+
+Constraints:
+1 <=T<= 103
+1 <=n<= 103
+
+Example:
+Input :
+2
+5
+a bc d dcb a
+4
+a bc d ba
+
+Output :
+True
+False
+
+Explanation:
+case 1 : as String "abcddcba" is palindrome the function should return true
+case 2 : as String "abcdba" is not palindrome the function should return false
+#include <bits/stdc++.h>
+using namespace std;
+
+struct Node
+{
+    string data;
+    Node* next;
+    
+    Node(string x){
+        data = x;
+        next = NULL;
+    }
+};
+
+Node *newNode(string str)
+{
+    Node *new_node = new Node(str);
+    new_node->next = NULL;
+    return new_node;
+}
+
+bool compute(struct Node* root);
+
+void print(Node *root)
+{
+    Node *temp = root;
+    
+    while(temp!=NULL)
+    {
+        cout<<temp->data<<endl;
+        temp=temp->next;
+    }
+}
+
+int main() {
+	// your code goes here
+	int T;
+	cin>>T;
+	while(T--)
+	{
+		int K;
+		cin>>K;
+		struct Node *head = NULL;
+                struct Node *temp = head;
+		
+		for(int i=0;i<K;i++){
+		string str="";
+		cin>>str;
+			if(head==NULL)
+			head=temp=new Node(str);
+			else
+			{
+				temp->next = new Node(str);
+				temp=temp->next;
+			}
+		}
+		if(compute(head))
+			cout<<"True"<<endl;
+		else 
+			cout<<"False"<<endl;
+	}
+	return 0;
+}// } Driver Code Ends
+
+
+/*
+The structure of linked list is the following
+struct Node
+{
+    string data;
+    Node* next;
+    
+    Node(int x){
+        data = x;
+        next = NULL;
+    }
+};
+*/
+bool compute(Node* root)
+{
+   string s="";
+   Node *start=root;
+   while(start!=NULL)
+   {
+        s=s+start->data;
+        start=start->next;
+   }
+   int i=0;
+   while(i<s.length()/2)
+   {
+       if(s[i]!=s[s.length()-1-i])
+       return false;
+       i++;
+       
+   }
+   
+   return true;
+   
+}
