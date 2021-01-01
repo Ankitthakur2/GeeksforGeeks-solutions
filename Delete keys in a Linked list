@@ -1,0 +1,139 @@
+Given a single linked list and an integer x. Your task is to complete the function deleteAllOccurances() which deletes all occurences of a key x present in the linked list. The function takes two arguments: the head of the linked list and an integer x. The function should
+
+Example 1:
+
+Input:
+LinkedList = 2->2->1->4->4
+x = 4
+Output: 2 2 1 
+Example 2:
+
+Input:
+LinkedList = 1->2->2->3->2->3
+x = 2
+Output: 1 3 3
+Explanation: Given number to delete is 2.
+After deleting all occurrences of 2, we
+have elements in the list as 1, 3, and 3.
+ 
+
+Your Task:
+The task is to complete the function deleteAllOccurances() which should delete all the occurrences of given number x from the list and return the head of the modified linked list.
+
+Expected Time Complexity : O(n)
+Expected Auxilliary Space : O(1)
+
+Constraints:
+1 <= size of the linkedlist <= 100
+1 <= x <= N
+// { Driver Code Starts
+// C program to find n'th Node in linked list
+#include <stdio.h>
+#include <stdlib.h>
+#include<iostream>
+using namespace std;
+
+/* Link list Node */
+struct Node
+{
+    int data;
+    struct Node* next;
+    
+    Node(int x){
+        data = x;
+        next = NULL;
+    }
+};
+
+void append(struct Node** head_ref, struct Node **tail_ref,
+           int new_data)
+{
+    struct Node* new_node = new Node(new_data);
+    if (*head_ref == NULL)
+       *head_ref = new_node;
+    else
+       (*tail_ref)->next = new_node;
+    *tail_ref = new_node;
+}
+
+/* Function to get the middle of the linked list*/
+struct Node* deleteAllOccurances(struct Node *head,int );
+
+void printList(Node *head)
+{
+   while (head != NULL)
+   {
+      cout << head->data << " ";
+      head = head->next;
+   }
+   cout << "\n";
+}
+
+/* Driver program to test above function*/
+int main()
+{
+  int T,i,n,l;
+
+  // TO BE REMOVED
+  for (int i=0; i<2000; i++);
+
+
+    cin>>T;
+
+    while(T--){
+    struct Node *head = NULL,  *tail = NULL;
+
+        cin>>n;
+        for(i=1;i<=n;i++)
+        {
+            cin>>l;
+            append(&head, &tail, l);
+        }
+
+	int kk;
+	cin>>kk;
+    head =deleteAllOccurances(head,kk);
+    printList(head);
+    }
+    return 0;
+}
+
+// } Driver Code Ends
+
+
+/* Link list Node 
+struct Node
+{
+    int data;
+    struct Node* next;
+    
+    Node(int x){
+        data = x;
+        next = NULL;
+    }
+};*/
+/*You are required to complete below method*/
+Node* deleteAllOccurances(Node *head,int x)
+{
+     Node *start=head;
+    if(start->data==x)
+    {
+        start=start->next;
+        
+    }   
+    head=start;
+    while(start->next)
+    {
+          if(start->next->data==x )
+          {
+              start->next=start->next->next;
+              
+          }
+          else 
+          {
+              start=start->next;
+              
+          }
+    }
+    return head;
+}
