@@ -1,0 +1,101 @@
+You are given a string. You need to print the lexicographically sorted power-set of the string.
+Note: The string s contains lowercase letter of alphabet.
+
+Example 1:
+
+Input:
+s = a
+Output: a
+Explanation: empty string and a 
+are only sets.
+Example 2:
+
+Input:
+s = abc
+Output: a ab abc ac b bc c
+Explanation: empty string, 
+a, ab, abc, ac, b, bc, c 
+are the sets.
+Your Task:
+You don't need to read input or print anything. You only need to complete the function powerSet that takes string s as parameter and returns a list of subsets. The lexicographic-sorting and printing is done automatically by the driver code.
+
+Expected Time Complexity: O(2|s|).
+Expected Auxiliary Space: O(|s|). 
+
+Constraints:
+1 <= |s| <= 10
+
+// { Driver Code Starts
+//Initial Template for C++
+
+
+// CPP program to generate power set
+#include <bits/stdc++.h>
+using namespace std;
+
+
+ // } Driver Code Ends
+
+
+//User function Template for C++
+
+//Complete this function
+
+
+void solution(string input,string output,vector<string> &v)
+{
+    if(input.length()==0)
+    {
+        v.push_back(output);
+        return;
+    }
+    
+    string output1=output;
+    string output2=output;
+    output2.push_back(input[0]);
+    input.erase(input.begin()+0);
+     solution(input,output1,v);
+    solution(input,output2,v);
+    return;
+    
+}
+
+vector <string> powerSet(string s)
+{
+   string input=s;
+   string output="";
+   vector<string> v;
+   solution(input,output,v);
+   return v;
+}
+
+
+// { Driver Code Starts.
+
+
+// Driver code
+int main()
+{
+    int T;
+    cin>>T;//testcases
+    while(T--)
+    {
+        string s;
+        cin>>s;//input string
+        
+        //calling powerSet() function
+        vector<string> ans = powerSet(s);
+        
+        //sorting the result of the powerSet() function
+        sort(ans.begin(),ans.end());
+        
+        //printing the result
+        for(auto x:ans)
+        cout<<x<<" ";
+        cout<<endl;
+        
+        
+    }
+
+return 0;
+}   // } Driver Code Ends
