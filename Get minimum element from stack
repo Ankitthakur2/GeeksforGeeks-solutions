@@ -1,0 +1,148 @@
+You are given N elements and your task is to Implement a Stack in which you can get minimum element in O(1) time.
+
+Example 1:
+
+Input:
+push(2)
+push(3)
+pop()
+getMin()
+push(1)
+getMin()
+Output: 3 2 1
+Explanation: In the first test case for
+query 
+push(2)  the stack will be {2}
+push(3)  the stack will be {2 3}
+pop()    poped element will be 3 the
+         stack will be {2}
+getMin() min element will be 2 
+push(1)  the stack will be {2 1}
+getMin() min element will be 1
+Your Task:
+You are required to complete the three methods push() which take one argument an integer 'x' to be pushed into the stack, pop() which returns a integer poped out from the stack and getMin() which returns the min element from the stack. (-1 will be returned if for pop() and getMin() the stack is empty.)
+
+Expected Time Complexity : O(1) for all the 3 methods.
+Expected Auixilliary Space : O(1) for all the 3 methods.
+
+Constraints:
+1 <= Number of queries <= 100
+1 <= values of the stack <= 100
+
+// { Driver Code Starts
+#include<bits/stdc++.h>
+using namespace std;
+class _stack{
+stack<int> s;
+int minEle;
+public :
+    int getMin();
+    int pop();
+    void push(int);
+};
+
+
+int main()
+{
+   int t;
+   cin>>t;
+   while(t--)
+   {
+       int q;
+       cin>>q;
+        _stack *a = new _stack();
+       while(q--){
+
+       int qt;
+       cin>>qt;
+
+       if(qt==1)
+       {
+           //push
+           int att;
+           cin>>att;
+           a->push(att);
+       }
+       else if(qt==2)
+       {
+           //pop
+           cout<<a->pop()<<" ";
+       }
+       else if(qt==3)
+       {
+           //getMin
+           cout<<a->getMin()<<" ";
+       }
+       }
+       cout<<endl;
+   }
+
+}
+
+
+// } Driver Code Ends
+
+
+/*
+The structure of the class is as follows
+class _stack{
+stack<int> s;
+int minEle;
+public :
+    int getMin();
+    int pop();
+    void push(int);
+};
+*/
+
+/*returns min element from stack*/
+int ele;
+int _stack :: getMin()
+{
+   if(s.size()==0)
+   return -1;
+   return ele;
+   
+}
+
+/*returns poped element from stack*/
+int _stack ::pop()
+{
+   if(s.size()==0)
+   return -1;
+   else if(s.top()>=ele)
+   {
+       int x=s.top();
+       s.pop();
+       return x;
+   }
+   else if(s.top()<ele)
+   {
+       int y=ele;
+     
+       ele=2*ele-s.top();
+         s.pop();
+       return y;
+   }
+   
+}
+
+/*push element x into the stack*/
+void _stack::push(int x)
+{
+    if(s.size()==0)
+      {
+          s.push(x);
+          ele=x;
+      }
+      else if(x>=ele)
+      {
+          s.push(x);
+      }
+      else if(x<ele)
+      {
+          s.push(2*x-ele);
+          ele=x;
+      }
+   
+}
