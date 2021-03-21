@@ -1,0 +1,91 @@
+Given a number s(in string form). Find the Smallest number (Not leading Zeros) which can be obtained by rearranging the digits of given number.
+ 
+
+Example 1:
+
+Input: s = "846903"
+Output: 304688
+Explanation: 304689 is the smallest number
+by rearranging the digits.
+Example 2:
+
+Input: s = "55010"
+Output: 10055
+Explanation: 10055 is the smallest number 
+by rearranging the digts.
+ 
+
+Your Task:
+You don't need to read or print anything. Your task is to complete the function minimum_number() which takes the number as input parameter and returns the smallest number than can be formed without leading zeros by rearranging the digits of the number.
+ 
+
+Expected Time Complexity: O(N * log(N)) where N is the number of digits of the given number
+Expected Space Complexity: O(1)
+ 
+
+Constraints:
+1 <= N <= 10^5
+
+
+// { Driver Code Starts
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+ // } Driver Code Ends
+
+
+class Solution{
+	public:
+   	string minimum_Number(string s){
+   	    sort(s.begin(),s.end());
+   	    string res="";
+   	    int count=0;
+   	    for(int i=0;i<s.length();i++)
+   	    {
+   	        if(res.length()==0 && s[i]=='0')
+   	        {
+   	        count++;
+   	        continue;
+   	        }
+   	        else
+   	        res.push_back(s[i]);
+   	    }
+   	    
+   	    if(res.length()==0)
+   	    return "0";
+   	    else if(res.length()!=0 && count==0)
+   	    return res;
+   	    else if(res.length()!=0 && count!=0)
+   	    {
+   	        string ans;
+   	        ans.push_back(res[0]);
+   	        int pos=count;
+   	        while(count--)
+   	        {
+   	            ans.push_back('0');
+   	        }
+   	        for(int i=1;i<res.length();i++)
+   	        {
+   	            ans.push_back(res[i]);
+   	        }
+   	        
+   	        return ans;
+   	    }
+   	}    
+};
+
+// { Driver Code Starts.
+int main(){
+	int tc;
+	cin >> tc;
+	while(tc--){
+		string s;
+		cin >> s;
+		Solution ob;
+		string ans = ob.minimum_Number(s);
+		cout << ans <<"\n";
+	}  
+	return 0;
+}  // } Driver Code Ends
