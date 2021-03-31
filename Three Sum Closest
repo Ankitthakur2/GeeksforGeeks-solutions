@@ -1,0 +1,122 @@
+Given an array Arr of N numbers and another number target, find three integers in the array such that the sum is closest to target. Return the sum of the three integers.
+
+Example 1:
+
+Input:
+N = 6, target = 2
+A[] = {-7,9,8,3,1,1}
+Output: 2
+Explanation: There is one triplet with sum
+2 in the array. Triplet elements are -7,8,
+1 whose sum is 2.
+Example 2:
+
+Input:
+N = 4, target = 13
+A[] = {5,2,7,5}
+Output: 14
+Explanation: There is one triplet with sum
+12 and other with sum 14 in the array.
+Triplet elements are 5, 2, 5 and 2, 7, 5
+respectively. Since abs(13-12) ==
+abs(13-14) maximum triplet sum will be
+preferred i.e 14.
+Your Task:
+Complete threeSumClosest() function and return the expected answer.
+
+NOTE: If their exists more than one answer then return the maximum sum.
+
+Expected Time Complexity: O(N*N).
+Expected Auxiliary Space: O(1).
+
+Constraints:
+1 ≤ N ≤ 103
+-105 ≤ A[i] ≤ 10^5
+1 ≤ target ≤ 10^5
+
+// { Driver Code Starts
+//Initial function template for C++
+
+#include<bits/stdc++.h>
+using namespace std;
+
+
+ // } Driver Code Ends
+// User function template for C++
+
+// arr : given vector of elements
+// target : given sum value
+
+class Solution{
+  public:
+    int threeSumClosest(vector<int> arr, int target) {
+               int res=INT_MIN;
+        int mindiff=INT_MAX;
+        sort(arr.begin(),arr.end());
+       
+        int n=arr.size();
+        for(int i=0;i<n-2;i++)
+        {
+            int left=i+1;
+            int right=n-1;
+            while(left<right)
+            {
+                 int diff=abs(arr[i]+arr[left]+arr[right]-target);
+                 int temp=arr[i]+arr[left]+arr[right];
+                
+                if(diff==0)
+                return target;
+                
+                if(temp>target)
+                {
+                   
+                    right--;
+                    
+                }
+                else 
+                {
+                   left++;
+                   
+                }
+               
+                
+                if(diff==mindiff)
+                res=max(res,temp);
+                else
+                {
+                    mindiff=min(diff,mindiff);
+                 if(mindiff==diff)
+                 res=temp;
+                    
+                }
+            }
+        }
+        
+       return res;
+        
+    }
+};
+
+
+
+// { Driver Code Starts.
+
+int main() {
+    int t;
+    cin >> t;
+    while(t--) {
+        
+        int n,target;
+        cin >> n >> target;
+        
+        vector<int> vec(n);
+        
+        for(int i = 0 ; i < n ; ++ i ) 
+            cin >> vec[i];
+        Solution obj;
+        cout << obj.threeSumClosest(vec, target) << "\n";
+    }
+}
+
+//Position this line where user code will be pasted.
+  // } Driver Code Ends
