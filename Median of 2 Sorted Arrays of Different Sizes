@@ -1,0 +1,79 @@
+Given two sorted arrays array1 and array2 of size m and n respectively. Find the median of the two sorted arrays.
+
+Example 1:
+
+Input:
+m = 3, n = 4
+array1[] = {1,5,9}
+array2[] = {2,3,6,7}
+Output: 5
+Explanation: The middle element for
+{1,2,3,5,6,7,9} is 5
+Example 2:
+
+Input:
+m = 2, n = 4
+array1[] = {4,6}
+array2[] = {1,2,3,5}
+Output: 3.5
+Your Task:
+The task is to complete the function MedianOfArrays() that takes array1 and array2 as input and returns their median. 
+
+
+
+Constraints: 
+0 <= m,n <= 10000
+1 <= array1[i], array2[i] <= 10^5
+
+// { Driver Code Starts
+//Initial Template for C++
+
+#include <bits/stdc++.h>
+using namespace std;
+double MedianOfArrays(vector<int>& array1, vector<int>& array2);
+
+
+ // } Driver Code Ends
+//User function Template for C++
+
+double MedianOfArrays(vector<int>& array1, vector<int>& array2)
+{
+    vector<int> v;
+    for(int i=0;i<array1.size();i++)
+     v.push_back(array1[i]);
+     
+     for(int j=0;j<array2.size();j++)
+     v.push_back(array2[j]);
+     
+     sort(v.begin(),v.end());
+     if((v.size()%2)!=0)
+     return v[v.size()/2];
+     
+     return (v[v.size()/2]+v[(v.size()-1)/2])/2.0;
+    
+}
+
+// { Driver Code Starts.
+
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int m,n;
+        cin>>m;
+        vector<int> array1(m);
+        for (int i = 0; i < m; ++i)
+            cin>>array1[i];
+        cin>>n;
+        vector<int> array2(n);
+        for (int i = 0; i < n; ++i)
+            cin>>array2[i];
+        cout<<MedianOfArrays(array1, array2)<<endl;
+    }
+    return 0; 
+}
+
+
+  // } Driver Code Ends
