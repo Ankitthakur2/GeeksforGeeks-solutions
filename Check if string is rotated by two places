@@ -1,0 +1,116 @@
+Given two strings a and b. The task is to find if the string 'b' can be obtained by rotating another string 'a' by exactly 2 places.
+
+Example 1:
+
+Input:
+a = amazon
+b = azonam
+Output: 1
+Explanation: amazon can be rotated anti
+clockwise by two places, which will make
+it as azonam.
+Example 2:
+
+Input:
+a = geeksforgeeks
+b = geeksgeeksfor
+Output: 0
+Explanation: If we rotate geeksforgeeks by
+two place in any direction , we won't get
+geeksgeeksfor.
+Your Task:
+The task is to complete the function isRotated() which takes two strings as input parameters and checks if given strings can be formed by rotations. The function returns true if string 1 can be obtained by rotating string 2 by two places, else it returns false.
+
+Expected Time Complexity: O(N).
+Expected Auxilary Complexity: O(N).
+Challenge: Try doing it in O(1) space complexity.
+
+Constraints:
+1 <= length of a, b < 100
+
+// { Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+
+ // } Driver Code Ends
+class Solution{
+  public:
+    /*  Function to check if str1 can be formed from
+    *   str2 after rotation by 2 places
+    */
+    bool isRotated(string str1, string str2)
+    {
+        if(str1.length()!=str2.length())
+        return 0;
+        int n=str1.length();
+        if(n==1)
+         {
+             if(str1[0]==str2[0])
+             return 1;
+             else
+             return 0;
+         }
+         
+         if(n==2)
+         {
+             if(str1[0]==str2[0] && str1[1]==str2[1])
+             return 1;
+             else
+             return 0;
+         }
+         
+         
+        int flag1=1;
+        int flag2=1;
+        for(int i=2;i<str1.length();i++)
+        {
+            if(str1[i]!=str2[i-2])
+            {
+               flag1=-1; 
+            }
+        }
+         if(str1[0]!= str2[n-2] || str1[1]!=str2[n-1])
+         {
+              flag1=-1;
+         }
+         
+         if(str1[n-2]!=str2[0] || str1[n-1]!=str2[1])
+         {
+             flag2=-1;
+         }
+         
+          for(int i=0;i<str1.length()-2;i++)
+        {
+            if(str1[i]!=str2[i+2])
+            {
+               flag2=-1; 
+            }
+        }
+     
+     if(flag1==flag2)
+     return 0;
+     else
+     return 1;
+        
+    }
+
+};
+
+// { Driver Code Starts.
+
+int main() {
+	
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		string s;
+		string b;
+		cin>>s>>b;
+		Solution obj;
+		cout<<obj.isRotated(s,b)<<endl;
+	}
+	return 0;
+}
+  // } Driver Code Ends
