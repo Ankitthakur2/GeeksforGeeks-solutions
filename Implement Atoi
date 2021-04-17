@@ -1,0 +1,73 @@
+Your task  is to implement the function atoi. The function takes a string(str) as argument and converts it to an integer and returns it.
+
+Example 1:
+
+Input:
+str = 123
+Output: 123
+
+Example 2:
+
+Input:
+str = 21a
+Output: -1
+Explanation: Output is -1 as all
+characters are not digit only.
+Your Task:
+Complete the function atoi() which takes a string as input parameter and returns integer value of it. if the input string is not a numerical string then returns 1..
+
+Expected Time Complexity: O(|S|), |S| = length of string S.
+Expected Auxiliary Space: O(1)
+
+Constraints:
+1<=length of S<=10
+
+// { Driver Code Starts
+ #include <bits/stdc++.h>
+using namespace std;
+
+ // } Driver Code Ends
+
+
+class Solution{
+    public:
+        /*You are required to complete this method */
+    int atoi(string str)
+    {
+        int ans=0;
+        int i=0;
+        
+        if(str[0]=='-')
+          i=1;
+        
+        
+        while(i<str.length())
+        {
+            if(str[i]>='0' && str[i]<='9')
+            ans=ans*10+(str[i]-'0');
+            else
+             return -1;
+            i++;
+        }
+        
+        
+        if(str[0]=='-')
+        return -ans;
+        else
+        return ans;
+    }
+};
+
+// { Driver Code Starts.
+int main()
+{
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		string s;
+		cin>>s;
+		Solution ob;
+		cout<<ob.atoi(s)<<endl;
+	}
+}  // } Driver Code Ends
