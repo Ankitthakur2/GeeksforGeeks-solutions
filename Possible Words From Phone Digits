@@ -1,0 +1,111 @@
+Given a keypad as shown in the diagram, and an N digit number which is represented by array a[ ], the task is to list all words which are possible by pressing these numbers.
+
+
+Example 1:
+
+Input: N = 3, a[] = {2, 3, 4}
+Output:
+adg adh adi aeg aeh aei afg afh afi 
+bdg bdh bdi beg beh bei bfg bfh bfi 
+cdg cdh cdi ceg ceh cei cfg cfh cfi 
+Explanation: When we press 2,3,4 then 
+adg, adh, adi, ... cfi are the list of 
+possible words.
+Example 2:
+
+Input: N = 3, a[] = {3, 4, 5}
+Output:
+dgj dgk dgl dhj dhk dhl dij dik dil 
+egj egk egl ehj ehk ehl eij eik eil 
+fgj fgk fgl fhj fhk fhl fij fik fil
+Explanation: When we press 3,4,5 then 
+dgj, dgk, dgl, ... fil are the list of 
+possible words.
+Your Task:
+You don't need to read input or print anything. You just need to complete the function possibleWords() that takes an array a[ ] and N as input parameters and returns an array of all the possible words in lexicographical increasing order. 
+
+Expected Time Complexity: O(4N).
+Expected Auxiliary Space: O(N).
+
+Constraints:
+1 ≤ N ≤ 10
+2 ≤ a[i] ≤ 9
+
+// { Driver Code Starts
+//Initial Template for C++
+
+#include <bits/stdc++.h>
+#include <string>
+
+using namespace std;
+
+
+ // } Driver Code Ends
+//User function Template for C++
+
+class Solution
+{
+    public:
+    //Function to find list of all words possible by pressing given numbers.
+  
+    void solution(vector<string> &vs,int a[],int N,string s,int i)
+    {
+          unordered_map<int,string> m;
+    m[2]="abc";m[3]="def";m[4]="ghi";m[5]="jkl";m[6]="mno";
+    m[7]="pqrs";m[8]="tuv";m[9]="wxyz";
+        
+        
+        if(i==N)
+        {
+            vs.push_back(s);
+            return;
+        }
+        
+        string str=m[a[i]];
+        
+        for(int j=0;j<str.length();j++)
+        {
+            solution(vs,a,N,s+str[j],i+1);
+        }
+        
+    }
+    vector<string> possibleWords(int a[], int N)
+    {
+        vector<string> vs;
+        if(N==0)
+        return vs;
+        solution(vs,a,N,"",0);
+    
+        return vs;
+    }
+};
+
+
+// { Driver Code Starts.
+
+int main() {
+  
+	int T;
+	
+	cin >> T; //testcases
+	
+	while(T--){ //while testcases exist
+	   int N;
+	    
+	   cin >> N; //input size of array
+	   
+	   int a[N]; //declare the array
+	   
+	   for(int i =0;i<N;i++){
+	       cin >> a[i]; //input the elements of array that are keys to be pressed
+	   }
+	   
+	   Solution obj;
+	   
+	  vector <string> res = obj.possibleWords(a,N);
+	  for (string i : res) cout << i << " ";
+	   cout << endl;
+	}
+	
+	return 0;
+}  // } Driver Code Ends
