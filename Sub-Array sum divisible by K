@@ -1,0 +1,99 @@
+You are given an array A of N positive and/or negative integers and a value K. The task is to find the count of all sub-arrays whose sum is divisible by K.
+
+Example 1:
+
+Input: N = 6, K = 5
+       arr[] = {4, 5, 0, -2, -3, 1}
+Output: 7
+Explanation: There are 7 sub-arrays whose 
+is divisible by K {4, 5, 0, -2, -3, 1}, {5}, 
+{5, 0}, {5, 0, -2, -3}, {0}, {0, -2, -3} 
+and {-2, -3}
+Example 2:
+
+Input: N = 6, K = 2
+       arr[] = {2, 2, 2, 2, 2, 2}
+Output: 21
+Explanation: All subarray sums are 
+divisible by 7
+
+ 
+
+Your Task:
+This is a function problem. You don't need to take any input, as it is already accomplished by the driver code. You just need to complete the function subCount() that takes array arr, integer N, and integer K as parameters and returns the desired output.
+
+Expected Time Complexity: O(N+K).
+Expected Auxiliary Space: O(K).
+
+ 
+
+Constraints:
+2 ≤ N ≤ 10^5
+
+
+// { Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+ // } Driver Code Ends
+class Solution{
+
+	public:
+	long long subCount(long long arr[], int N, long long K)
+	{
+	    int count=0;
+	    unordered_map<int,int> m;
+	    m[0]=1;
+	    long long int sum=0;
+	    for(int i=0;i<N;i++)
+	    {
+	        sum=sum+arr[i];
+	        int rem=sum%K;
+	        if(rem<0)
+	        rem=rem+K;
+	        
+	        if(m.find(rem)!=m.end())
+	          {
+	              count=count+m[rem];
+	              m[rem]++;
+	          }
+	          
+	          if(m.find(rem)==m.end())
+	          m[rem]=1;
+	        
+	        
+	        
+	    }
+	    
+	    return count;
+	}
+
+
+
+};
+
+
+// { Driver Code Starts.
+
+int main() 
+{
+   
+   	int t;
+    cin >> t;
+    while (t--)
+    {
+    	int n;
+       	long long k;
+		cin>>n >> k;
+		long long a[n];
+		for(int i=0;i<n;++i)
+			cin>>a[i];
+        
+
+        Solution ob;
+        cout << ob.subCount(a, n, k);
+	    cout << "\n";
+	     
+    }
+    return 0;
+}
